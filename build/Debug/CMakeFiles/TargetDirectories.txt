@@ -1,0 +1,9 @@
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/CMakeFiles/stm32f103zet6_freeRTOS_Dome.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/CMakeFiles/edit_cache.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/CMakeFiles/rebuild_cache.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/extern/FreeRTOS/CMakeFiles/freertos_kernel.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/extern/FreeRTOS/CMakeFiles/edit_cache.dir
+/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/extern/FreeRTOS/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OpenOCD: ST-Link 调试",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/stm32f103zet6_freeRTOS_Dome.elf",
+            "device": "STM32F103ZE",
+            "gdbPath": "/home/llsjjz/gnu_toolchain/xpack-arm-none-eabi-gcc-15.2.1-1.1/bin/arm-none-eabi-gdb",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f1x.cfg"
+            ],
+            "runToEntryPoint": "main",
+            "preLaunchTask": "CMake: 构建 Debug",
+            "showDevDebugOutput": "none"
+        },
+        {
+            "name": "OpenOCD: ST-Link 附加（不烧录）",
+            "type": "cortex-debug",
+            "request": "attach",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/Debug/stm32f103zet6_freeRTOS_Dome.elf",
+            "device": "STM32F103ZE",
+            "gdbPath": "/home/llsjjz/gnu_toolchain/xpack-arm-none-eabi-gcc-15.2.1-1.1/bin/arm-none-eabi-gdb",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f1x.cfg"
+            ],
+            "showDevDebugOutput": "none"
+        }
+    ]
+}
