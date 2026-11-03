@@ -1,5 +1,0 @@
-/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/Core/Src/main.c:60:6:vTaskLED	16	static
-/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/Core/Src/main.c:73:5:main	16	static
-/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/Core/Src/main.c:122:6:SystemClock_Config	72	static
-/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/Core/Src/main.c:169:6:HAL_TIM_PeriodElapsedCallback	16	static
-/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/Core/Src/main.c:187:6:Error_Handler	4	static

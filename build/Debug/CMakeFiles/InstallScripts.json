@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/cmake_install.cmake",
-		"/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/cmake/stm32cubemx/cmake_install.cmake",
-		"/home/llsjjz/STM32CubeMX/project/stm32f103zet6_freeRTOS_Dome/build/Debug/extern/FreeRTOS/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

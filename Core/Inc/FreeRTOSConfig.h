@@ -5,12 +5,14 @@
 
 // Tick 计数位宽：V11 新写法，取代旧的 configUSE_16_BIT_TICKS
 // 注意：两者不能同时定义，否则 FreeRTOS.h:65 会报错
-#define configTICK_TYPE_WIDTH_IN_BITS           TICK_TYPE_WIDTH_32_BITS
+#define configTICK_TYPE_WIDTH_IN_BITS           TICK_TYPE_WIDTH_32_BITS     //32 位 TickType_t
+#define configENABLE_BACKWARD_COMPATIBILITY     1                           //兼容旧版本写法
 
 // 调度器配置
 #define configUSE_PREEMPTION                    1   // 1:抢占式调度
+#define configUSE_CO_ROUTINES                   0   // 1:启用协程,与强制抢占式调度冲突,所以这里设为0
 #define configUSE_TIME_SLICING                  1   // 1:时间片轮转
-#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1  // 1:优化任务选择
+#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1  //  1:优化任务选择,stm32有计算前置指令,可以使用优化的任务选择算法,提高效率
 
 // 系统时钟配置
 #define configCPU_CLOCK_HZ                      (SystemCoreClock)  // CPU 主频
@@ -25,7 +27,7 @@
 // 允许调用 FreeRTOS FromISR 类 API 的最高优先级（数值最小）
 #define configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY 5
 
-// 下面两个是内核真正读取的、已经移位到 NVIC 寄存器高位的形式
+// 下面两个是内核真正读取的、已经移位到 NVIC 寄存器高位的形式,NVIC 寄存器的优先级是 8 位的,但是 STM32F103 只用了高 4 位,所以要左移 4 位.
 #define configKERNEL_INTERRUPT_PRIORITY \
     ( configLIBRARY_LOWEST_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
 
@@ -33,8 +35,9 @@
     ( configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - configPRIO_BITS) )
 
 // 任务相关配置
-#define configMAX_PRIORITIES                    (32)               // 最大优先级数
+#define configMAX_PRIORITIES                    (8)               // 最大优先级数
 #define configMINIMAL_STACK_SIZE                ((unsigned short)128)  // 空闲任务栈大小
+#define configIDLE_SHOULD_YIELD                 0                   // 空闲任务是否让出 CPU
 #define configMAX_TASK_NAME_LEN                 (16)               // 任务名最大长度
 
 // 内存配置
@@ -43,16 +46,30 @@
 #define configSUPPORT_STATIC_ALLOCATION          0                // 静态内存申请
 
 // 钩子函数配置（暂不启用）
-#define configUSE_IDLE_HOOK                      0
-#define configUSE_TICK_HOOK                      0
-#define configUSE_MALLOC_FAILED_HOOK             0
-#define configCHECK_FOR_STACK_OVERFLOW           0
+#define configUSE_IDLE_HOOK                      0              // 1:启用空闲钩子函数
+#define configUSE_TICK_HOOK                      0              // 1:启用节拍钩子函数
+#define configUSE_MALLOC_FAILED_HOOK             0              // 1:启用内存申请失败钩子函数
+
+#ifdef DEBUG
+    #define configCHECK_FOR_STACK_OVERFLOW           2          // 开启栈溢出检查->vApplicationStackOverflowHook().
+#else
+    #define configCHECK_FOR_STACK_OVERFLOW           0
+#endif
 
 // 可选功能
 #define INCLUDE_vTaskDelay                       1
 #define INCLUDE_vTaskDelayUntil                  1
 #define INCLUDE_vTaskDelete                      1
 #define INCLUDE_vTaskSuspend                     1
+#define INCLUDE_xTaskGetSchedulerState           1
+
+/* ===== 调试辅助 ===== */
+// 开启任务追踪（允许使用 vTaskList）
+#define configUSE_TRACE_FACILITY                1
+// 开启格式化函数（允许将任务列表格式化为字符串）
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1
+// 开启查询栈历史最小余量（允许使用 uxTaskGetStackHighWaterMark）
+#define INCLUDE_uxTaskGetStackHighWaterMark     1
 
 #ifdef DEBUG
     #define configASSERT( x )                                           \
