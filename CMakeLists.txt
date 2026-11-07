@@ -73,6 +73,12 @@ add_subdirectory(extern/FreeRTOS)
 target_link_libraries(${CMAKE_PROJECT_NAME} 
     freertos_kernel)
 
+# ------func--------
+add_subdirectory(func)
+
+target_link_libraries(${CMAKE_PROJECT_NAME} func_user)
+
+
 # Generate Intel HEX (.hex) from the ELF executable
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O ihex
