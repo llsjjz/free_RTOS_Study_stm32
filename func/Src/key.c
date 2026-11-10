@@ -11,23 +11,24 @@ void vTaskKEY(void *pvParameters)
 {
     while (1)
     {
-        static bool key_pressed = false; // 按键按下计数器
+        static uint8_t key_pressed = 0; // 按键按下计数器
         if(isKeyPressed(&key0, 0)) // 检测按键是否被按下
         {
-            if(key_pressed == false)
+            if(key_pressed == 0)
             {
-                vTaskSuspend(LED_TaskHandle); // 挂起 LED 任务
-                key_pressed = true; // 标记按键已按下
+                key_pressed = 1; // 按键按下，计数器加 1
+                HAL_NVIC_DisableIRQ(EXTI3_IRQn); // 禁用中断
             }
             else
             {
-                vTaskResume(LED_TaskHandle); // 恢复 LED 任务
-                key_pressed = false; // 标记按键已释放
-            }   
+                key_pressed = 0; // 按键释放，计数器清零
+                HAL_NVIC_EnableIRQ(EXTI3_IRQn); // 使能中断
+            }
         }
 
         vTaskDelay(pdMS_TO_TICKS(100)); // 延时 100ms，避免任务占用过多 CPU 时间
     }
+    vTaskDelete(NULL); // 删除当前任务，永远不会执行到这里
 }
 
 /******************************************************************************************/

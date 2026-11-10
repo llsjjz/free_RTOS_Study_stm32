@@ -9,8 +9,8 @@ typedef struct {
 } KEY_TypeDef;
 
 //定义按键状态常量
-const uint8_t KEY_ON = 0;
-const uint8_t KEY_OFF = 1;
+#define KEY_ON   1
+#define KEY_OFF  0
 
 //按键检测
 bool isKeyPressed(KEY_TypeDef *key,uint8_t mode);

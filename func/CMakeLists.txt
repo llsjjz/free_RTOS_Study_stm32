@@ -5,6 +5,8 @@ target_sources(func_user PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/led.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/debug.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/key.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Src/uqueue.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Src/uexti.c
 )
 
 target_include_directories(func_user
