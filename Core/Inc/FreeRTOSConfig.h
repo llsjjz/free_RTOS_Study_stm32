@@ -49,6 +49,18 @@
 //list
 #define configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES  0 // 1:启用列表数据完整性检查,用于调试
 #define configUSE_MINI_LIST_ITEM                   1 // 1:启用迷你列表项
+#define configUSE_COUNTING_SEMAPHORES              1 // 1:启用计数信号量
+#define configUSE_MUTEXES                          1 // 1:启用互斥锁
+#define configUSE_RECURSIVE_MUTEXES                1 // 1:启用递归互斥锁
+
+//事件组
+#define configUSE_EVENT_GROUPS                     1 // 1:启用事件组
+
+#define configUSE_TIMERS                           1
+#define configTIMER_TASK_PRIORITY                  3   // 守护任务优先级, 见 §4 第 5 条
+#define configTIMER_QUEUE_LENGTH                   10  // 命令队列长度
+#define configTIMER_TASK_STACK_DEPTH               256 // 单位: 字(4 B), 即 1 KB
+#define INCLUDE_xTimerPendFunctionCall             1 // 1:启用定时器回调函数    
 
 // 钩子函数配置（暂不启用）
 #define configUSE_IDLE_HOOK                      0              // 1:启用空闲钩子函数

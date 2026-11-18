@@ -1,4 +1,5 @@
 #include "key.h"
+#include "usem.h" 
 #include "led.h"
 
 //定义按键对象
@@ -17,16 +18,19 @@ void vTaskKEY(void *pvParameters)
             if(key_pressed == 0)
             {
                 key_pressed = 1; // 按键按下，计数器加 1
-                HAL_NVIC_DisableIRQ(EXTI3_IRQn); // 禁用中断
+                xEventGroupSetBits(xEventGroup, 0x01); // 设置事件组标志位，通知其他任务按键事件发生
             }
             else
             {
                 key_pressed = 0; // 按键释放，计数器清零
-                HAL_NVIC_EnableIRQ(EXTI3_IRQn); // 使能中断
+                xEventGroupClearBits(xEventGroup, 0x01); // 清除事件组标志位，通知其他任务按键事件结束
             }
+
+            LED0_Toggle(); // 切换LED状态
+            xTaskNotifyGive(USEM_TaskHandle); // 通知 USEM 任务按键事件发生
         }
 
-        vTaskDelay(pdMS_TO_TICKS(100)); // 延时 100ms，避免任务占用过多 CPU 时间
+        vTaskDelay(pdMS_TO_TICKS(10)); // 延时 10ms，避免任务占用过多 CPU 时间
     }
     vTaskDelete(NULL); // 删除当前任务，永远不会执行到这里
 }
@@ -45,7 +49,7 @@ bool isKeyPressed(KEY_TypeDef *key,uint8_t mode)
         key_time = HAL_GetTick(); // 记录按键释放时的时间
         key_num = true; // 按键未按下
     }
-    else if (HAL_GPIO_ReadPin(key->GPIOx, key->GPIO_Pin) == KEY_ON && (HAL_GetTick() - key_time) > 50) // 按键按下且持续时间超过50ms
+    else if (HAL_GPIO_ReadPin(key->GPIOx, key->GPIO_Pin) == KEY_ON && (HAL_GetTick() - key_time) > 20) // 按键按下且持续时间超过20ms
     {
         if(key_num == true) // 按键之前未按下
         {

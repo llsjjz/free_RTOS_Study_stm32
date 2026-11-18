@@ -15,4 +15,6 @@ typedef struct {
 extern TaskHandle_t LED_TaskHandle; // LED任务句柄
 void vTaskLED(void *pvParameters);
 
+void LED0_Toggle(void);
+
 #endif

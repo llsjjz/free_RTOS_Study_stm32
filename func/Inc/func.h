@@ -9,6 +9,8 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h" // 如果需要使用队列等功能
+#include "semphr.h"
+#include "event_groups.h" // 如果需要使用事件组等功能
 
 #include <stdio.h> // 使用 printf
 #include <string.h>
@@ -16,7 +18,9 @@
 
 //*****************************************************************************//
 extern QueueHandle_t Q_uqueue; // 队列句柄
-
+extern SemaphoreHandle_t xSem; // 信号量句柄
+extern SemaphoreHandle_t xMutex; // 互斥锁句柄
+extern EventGroupHandle_t xEventGroup; // 事件组句柄
 //****************************************************************************//
 
 void func_init(void);

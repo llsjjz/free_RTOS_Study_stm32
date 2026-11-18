@@ -17,7 +17,7 @@ bool isKeyPressed(KEY_TypeDef *key,uint8_t mode);
 
 /******************************************************************************************/
 //按键任务相关
-#define KEY_Priority 3 // 按键任务优先级
+#define KEY_Priority 2 // 按键任务优先级
 #define KEY_StackSize 128 // 按键任务栈大小(单位：字)
 extern TaskHandle_t KEY_TaskHandle; // 按键任务句柄
 void vTaskKEY(void *pvParameters);

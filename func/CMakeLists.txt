@@ -7,6 +7,7 @@ target_sources(func_user PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/key.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/uqueue.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Src/uexti.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Src/usem.c
 )
 
 target_include_directories(func_user
